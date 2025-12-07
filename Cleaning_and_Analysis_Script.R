@@ -15,3 +15,8 @@ library(ggplot2)
 plot_data <- as.data.frame(contigency_table)
 #Creating contigency table data frame to view as viewable file
 contigency_DF <- as.data.frame(contigency_table)
+#Creating a seperate column in the datset called as "Toss_Won_Match"(i.e Binary Outcome Variable). This operation produces output 1 if Toss_Winner ID equals to Match_Winner ID otherwise 0.This column gives us the clear information about Winner vs Lost
+Match$Toss_Won_Match <- ifelse(Match$Toss_Winner == Match$Match_Winner, 1, 0)
+#contigency table is created to get the draw counts of Toss Winner Wins i.e 1 or Losses i.e 0
+contigency_table <- table(Match$Toss_Won_Match)
+print(contigency_table)
