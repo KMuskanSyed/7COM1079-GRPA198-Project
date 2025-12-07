@@ -20,3 +20,18 @@ Match$Toss_Won_Match <- ifelse(Match$Toss_Winner == Match$Match_Winner, 1, 0)
 #contigency table is created to get the draw counts of Toss Winner Wins i.e 1 or Losses i.e 0
 contigency_table <- table(Match$Toss_Won_Match)
 print(contigency_table)
+names(plot_data) <- c("Outcome_ID", "Count")
+ plot_data$Outcome <- factor(plot_data$Outcome_ID, 
+                              levels = c(0, 1), 
+                              labels = c("Toss Winner Lost Match", "Toss Winner Won Match"))
+#generating the Barplot with custom x and y labels.
+ toss_won_plot <- ggplot(plot_data, aes(x = Outcome, y = Count, fill = Outcome)) +
+       geom_bar(stat = "identity")+
+  scale_y_continuous(breaks = seq(0, 300, 15)) +
+  labs(
+         title = "Match Results Based on Winning the Toss",
+         x = "Do Toss Winner Also Won the Match?",
+         y = "Number of Matches"
+      ) +
+        theme_minimal() + 
+        theme(legend.position="none")
