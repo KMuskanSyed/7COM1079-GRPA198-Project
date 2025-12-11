@@ -50,22 +50,6 @@ toss_won_plot <- ggplot(plot_data, aes(x = Outcome, y = Count, fill = Outcome)) 
     axis.text.x = element_text(size = 12, face = "bold")
   )
 print(toss_won_plot)
-names(plot_data) <- c("Outcome_ID", "Count")
-plot_data$Outcome <- factor(plot_data$Outcome_ID, 
-                              levels = c(0, 1), 
-                              labels = c("Toss Winner Lost Match", "Toss Winner Won Match"))
-#generating the Barplot with custom x and y labels.
- toss_won_plot <- ggplot(plot_data, aes(x = Outcome, y = Count, fill = Outcome)) +
-       geom_bar(stat = "identity")+
-  scale_y_continuous(breaks = seq(0, 300, 15)) +
-  labs(
-         title = "Match Results Based on Winning the Toss",
-         x = "Do Toss Winner Also Won the Match?",
-         y = "Number of Matches"
-      ) +
-        theme_minimal() + 
-        theme(legend.position="none")
-print(toss_won_plot)
 #Input the raw counts from the contigency table
 match_results <- c(280, 288)
 #Run the Chi-Square Test (Tests against the 50/50 null hypothesis)
